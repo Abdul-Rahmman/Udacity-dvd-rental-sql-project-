@@ -1,4 +1,4 @@
-
+/*Q1-For total amount what is the percentage for each category ? *\
 
 
 WITH T1 AS(SELECT c.name category_name, 
@@ -22,5 +22,5 @@ ROUND(T1.category_amount/(select
       FROM payment)*100,2) As The_profit_percentage_for_each_category
 FROM T1
 
-
+/*---------------------------------------------------------------------*\
 
