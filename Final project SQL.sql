@@ -82,9 +82,29 @@ FROM T2
 
 /*---------------------------------------------------------------------*\
 
+/*Q4-How much actors that thier name start with F make revenue every month ?*\
+
+
+SELECT a.first_name ||' '|| a.last_name,Date_trunc('month',p.payment_date),SUM(p.amount)
+FROM actor a 
+JOIN film_actor fa
+ON a.actor_id = fa.actor_id
+JOIN film f
+ON f.film_id = fa.film_id
+JOIN film_category fc
+ON fc.film_id = f.film_id
+JOIN category c
+ON c.category_id = fc.category_id
+JOIN inventory i
+ON i.film_id = f.film_id
+JOIN rental r
+ON r.inventory_id = i.inventory_id
+JOIN payment p
+ON p.rental_id = r.rental_id
+WHERE a.first_name LIKE 'F%'
+GROUP BY 1,2
+ORDER BY 1,2 desc
 
 
 
-
-
-
+/*---------------------------------------------------------------------*\
