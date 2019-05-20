@@ -24,3 +24,30 @@ FROM T1
 
 /*---------------------------------------------------------------------*\
 
+
+
+WITH T1 AS(SELECT c.first_name || ' ' || c.last_name AS name ,
+          SUM(ROUND(p.amount,0)) AS total_amount
+          FROM customer c 
+          JOIN payment p
+          ON c.customer_id = p.customer_id
+          GROUP BY 1)
+          
+SELECT T1.name,T1.total_amount,
+       RANK()OVER(ORDER BY T1.total_amount DESC)
+FROM T1
+LIMIT 10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
