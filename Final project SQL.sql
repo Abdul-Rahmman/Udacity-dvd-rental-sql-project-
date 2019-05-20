@@ -44,7 +44,40 @@ LIMIT 10
 
 
 
+WITH T1 AS(SELECT s.store_id Store,
+           SUM(p.amount) Total_Amount
+           FROM store s
+           JOIN staff st
+           ON s.store_id = st.store_id
+           JOIN payment p
+           ON p.staff_id = st.staff_id
+           GROUP BY 1
+           ORDER BY 2 desc
+           LIMIT 1),
 
+T2 AS (SELECT c2.name category,
+       st2.store_id store,
+       SUM(p2.amount) total_amount
+       FROM category c2
+       JOIN film_category fc2
+       ON c2.category_id=fc2.category_id
+       JOIN film f2
+       ON fc2.film_id=f2.film_id
+       JOIN inventory i2
+       ON i2.film_id=f2.film_id
+       JOIN rental r2
+       ON r2.inventory_id=i2.inventory_id
+       JOIN payment p2
+       ON p2.rental_id=r2.rental_id
+       JOIN staff st2
+       ON st2.staff_id=p2.staff_id
+       JOIN T1 s2
+       ON s2.Store=st2.store_id
+       GROUP BY 1,2
+       LIMIT 5)
+
+SELECT *
+FROM T2
 
 
 
