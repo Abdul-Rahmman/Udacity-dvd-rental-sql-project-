@@ -24,6 +24,8 @@ FROM T1
 
 /*---------------------------------------------------------------------*\
 
+/*Q2-Rank the top 10 customer based on their payments ?*\
+
 
 
 WITH T1 AS(SELECT c.first_name || ' ' || c.last_name AS name ,
@@ -38,6 +40,7 @@ SELECT T1.name,T1.total_amount,
 FROM T1
 LIMIT 10
 
+/*---------------------------------------------------------------------*\
 
 
 
