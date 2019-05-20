@@ -43,6 +43,7 @@ LIMIT 10
 /*---------------------------------------------------------------------*\
 
 
+/*Q3-What are top 5 categorys revnue For the store that have most revnue ? *\
 
 WITH T1 AS(SELECT s.store_id Store,
            SUM(p.amount) Total_Amount
@@ -79,7 +80,7 @@ T2 AS (SELECT c2.name category,
 SELECT *
 FROM T2
 
-
+/*---------------------------------------------------------------------*\
 
 
 
